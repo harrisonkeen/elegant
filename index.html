@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en" data-name="a" data-credits="a" data-fline="fade" data-tag="none">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harrison Keen — Actor</title>
+<meta name="description" content="Harrison Keen, actor. Showreel, photos and credits.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- MOCKUP: every name font loads so the options panel can switch. Keep only the chosen script + Cormorant + Lora. -->
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Parisienne&family=Imperial+Script&family=Cormorant+Garamond:ital,wght@1,600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #f6efec;      /* page */
+    --veil: #ede3df;       /* soft panels, row rules */
+    --ink: #22312d;        /* text: deep green-black */
+    --bronze: #86663a;     /* links, buttons on light */
+    --gold: #c9a868;       /* name, curved lines */
+    --forest: #142426;     /* hero backdrop, footer */
+    --mist: #efe7df;       /* text on dark */
+    --gutter: clamp(16px, 5vw, 72px);
+    --text: "Lora", Georgia, serif;
+    --display: "Cormorant Garamond", Garamond, serif;
+    --name-scale: 1;
+  }
+  /* Name font shortlist for this template (pick per client photo): A Pinyon, E Parisienne, G Imperial Script.
+     Each is scaled so "Harrison" spans about the same width. */
+  [data-name="a"] { --name-font: "Pinyon Script"; --name-scale: 1.05; }
+  [data-name="e"] { --name-font: "Parisienne"; --name-scale: 1.02; }
+  [data-name="g"] { --name-font: "Imperial Script"; --name-scale: 1.14; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--blush);
+    color: var(--ink);
+    font: 400 1.0625rem/1.7 var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { display: block; max-width: 100%; height: auto; }
+  a { color: var(--bronze); text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 1px solid var(--bronze); outline-offset: 4px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; font-style: italic; margin: 0; line-height: 1.05; }
+  h2 { font-size: clamp(2.4rem, 4.6vw, 3.6rem); }
+
+  .section { position: relative; padding: clamp(72px, 10vw, 128px) var(--gutter); max-width: 1240px; margin: 0 auto; }
+  .flow { position: absolute; pointer-events: none; color: var(--gold); }
+
+  /* ---------- section titles: centred heading and swash ---------- */
+  .sec-head { margin-bottom: clamp(36px, 5vw, 60px); text-align: center; }
+  .swash { width: 120px; height: 16px; color: var(--gold); display: block; margin: 18px auto 0; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: absolute; inset: 0 0 auto; z-index: 5;
+    display: flex; justify-content: flex-end; gap: clamp(18px, 3vw, 40px);
+    padding: 28px var(--gutter);
+  }
+  .nav a { color: var(--mist); text-decoration: none; font-size: 0.95rem; }
+  .nav a:hover { color: var(--gold); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    min-height: max(640px, 100svh);
+    background: radial-gradient(ellipse 70% 90% at 28% 45%, #1c2e30 0%, var(--forest) 70%);
+    display: grid; align-items: center;
+  }
+  .hero-img {
+    position: absolute; left: 0; top: 0;
+    width: min(58%, 1000px); height: 100%;
+    object-fit: cover; object-position: 50% 22%;
+    -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 98%);
+            mask-image: linear-gradient(to right, #000 55%, transparent 98%);
+  }
+  .hero-copy { position: relative; width: fit-content; margin-left: 52%; padding-right: var(--gutter); padding-bottom: 40px; }
+  .hero-name {
+    color: var(--gold); line-height: 0.92;
+    font-family: var(--name-font), cursive; font-weight: 400; font-style: normal;
+    font-size: calc(clamp(4.5rem, 9.5vw, 9.5rem) * var(--name-scale));
+  }
+  .hero-name span { display: block; }
+  .hero-name span + span { padding-left: 0.6em; }
+  /* optional agency line, centred on the name; hidden unless the client has representation */
+  .tagline { display: none; margin: 28px 0 0; text-align: center; color: var(--mist); font-size: 1.15rem; letter-spacing: 0.04em; }
+  [data-tag="rep"] .tagline { display: block; }
+  .hero-edge { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(40px, 7vw, 96px); }
+  .hero-edge .fill { fill: var(--blush); }
+  .hero-edge .line { fill: none; stroke: var(--gold); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-img { animation: fade 2s ease both; }
+    .hero-name span { animation: rise 1.6s cubic-bezier(.22,.7,.2,1) both; }
+    .hero-name span:nth-child(1) { animation-delay: .6s; }
+    .hero-name span:nth-child(2) { animation-delay: .85s; }
+    .nav, .tagline { animation: fade 1.4s 1.4s ease both; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(.2em); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-block; padding: 13px 30px;
+    border: 1px solid var(--bronze); border-radius: 999px;
+    color: var(--bronze); text-decoration: none; font-size: 0.95rem;
+    transition: background-color .4s ease, color .4s ease;
+  }
+  .btn:hover { background: var(--bronze); color: var(--blush); }
+
+  /* ---------- featured ---------- */
+  #work .flow {
+    top: -40px; left: 0; width: 100%; height: 260px; opacity: .35;
+    /* clear the lines out from behind the heading so no font has to fight them */
+    -webkit-mask-image: radial-gradient(ellipse 340px 90px at 50% calc(100% - 50px), transparent 60%, #000 100%);
+            mask-image: radial-gradient(ellipse 340px 90px at 50% calc(100% - 50px), transparent 60%, #000 100%);
+  }
+  .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); max-width: 1000px; margin: 0 auto; position: relative; }
+  .feature { margin: 0; }
+  .feature img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
+  .feature h3 { font-size: 1.6rem; margin-top: 18px; }
+  .feature p { margin: 6px 0 0; font-size: 0.95rem; }
+  .feature .kind { color: var(--bronze); font-style: italic; margin-top: 2px; }
+
+  /* ---------- reel: forest band, video choices listed beside the player ---------- */
+  .reel { position: relative; overflow: hidden; background: var(--forest); color: var(--mist); }
+  .reel .flow { left: 0; bottom: 0; width: 100%; height: 340px; opacity: .3; }
+  .reel-grid {
+    display: grid; align-content: center; column-gap: clamp(32px, 5vw, 72px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-areas: ". video" "head video" "tabs video" ". video";
+  }
+  .reel .sec-head { grid-area: head; text-align: left; color: var(--gold); margin-bottom: 18px; }
+  .reel .swash { margin-left: 0; }
+  .reel-video { grid-area: video; position: relative; }
+  .reel-video video { width: 100%; aspect-ratio: 16 / 9; background: #000; }
+  .reel-video { padding: 14px; border: 1px solid var(--gold); }
+  .reel-video::after { content: ""; position: absolute; inset: 5px; border: 1px solid var(--gold); pointer-events: none; }
+  /* no browser controls until the visitor starts a video: just the poster and a gold play button */
+  .reel-start { position: absolute; inset: 14px; display: grid; place-items: center; border: 0; padding: 0; background: none; cursor: pointer; color: var(--forest); }
+  .reel-start span { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--gold); box-shadow: 0 6px 30px rgba(0,0,0,.35); transition: transform .3s ease; }
+  .reel-start svg { width: 26px; height: 26px; margin-left: 5px; }
+  .reel-start:hover span { transform: scale(1.08); }
+  .reel.played .reel-start { display: none; }
+
+  /* video picker: bordered cards with a play icon and a "Now playing" badge, so the choice reads as clickable */
+  .reel-picker { grid-area: tabs; }
+  .pick-label { margin: 0 0 12px; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); opacity: .85; }
+  .reel-tabs { display: flex; flex-direction: column; gap: 12px; }
+  .reel-tabs button {
+    font: inherit; color: inherit; cursor: pointer; text-align: left; position: relative;
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px; border: 1px solid rgba(201,168,104,.3); border-radius: 6px; background: rgba(239,231,223,.04);
+    transition: background-color .3s ease, border-color .3s ease;
+  }
+  .reel-tabs button:hover { background: rgba(239,231,223,.1); border-color: rgba(201,168,104,.7); }
+  .reel-tabs button[aria-selected="true"] { border-color: var(--gold); background: rgba(201,168,104,.12); }
+  .pick-icon { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold); transition: background-color .3s ease, color .3s ease; }
+  .pick-icon svg { width: 12px; height: 12px; margin-left: 2px; }
+  .reel-tabs button[aria-selected="true"] .pick-icon { background: var(--gold); color: var(--forest); }
+  .pick-title { display: block; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 1.4rem; line-height: 1.2; }
+  .reel-tabs small { display: block; color: var(--gold); opacity: .8; font-style: italic; font-size: 0.9rem; }
+  .now { display: none; position: absolute; top: -9px; right: 12px; padding: 1px 8px; border-radius: 999px; background: var(--gold); color: var(--forest); font-style: normal; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+  .reel-tabs button[aria-selected="true"] .now { display: block; }
+  /* badge reads "Selected" unless the video is actually playing */
+  .reel:not(.playing) .now .b-now, .reel.playing .now .b-sel { display: none; }
+
+  /* ---------- gallery ---------- */
+  .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.6vw, 20px); }
+  .gallery button { all: unset; display: block; cursor: zoom-in; overflow: hidden; border-radius: 3px; }
+  .gallery button:focus-visible { outline: 1px solid var(--bronze); outline-offset: 4px; }
+  .gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; transition: transform 1.2s cubic-bezier(.22,.7,.2,1); }
+  .gallery button:hover img { transform: scale(1.03); }
+
+  .lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; }
+  .lightbox::backdrop { background: rgba(20, 36, 38, 0.94); }
+  .lightbox[open] { display: grid; place-items: center; }
+  .lightbox img { max-width: 92vw; max-height: 88vh; object-fit: contain; }
+  .lightbox-close, .lightbox-step { position: fixed; cursor: pointer; background: none; border: 0; color: var(--mist); font: 2rem/1 var(--display); padding: 12px 16px; }
+  .lightbox-close { top: 16px; right: 16px; }
+  .lightbox-step { top: 50%; transform: translateY(-50%); font-size: 2.6rem; }
+  .lightbox-step.prev { left: 8px; }
+  .lightbox-step.next { right: 8px; }
+
+  /* ---------- photos -> credits: a band of curved lines bridges the two blush sections ---------- */
+  .divider { position: relative; height: clamp(80px, 10vw, 140px); overflow: hidden; }
+  .divider .flow { inset: 0; width: 100%; height: 100%; opacity: .45; }
+  #photos { padding-bottom: 24px; }
+  #credits { padding-top: 24px; }
+
+  /* ---------- credits ---------- */
+  /* the script splits credits into --cols even columns; a shared gold rule closes them on one line */
+  .credits { display: grid; grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr)); column-gap: clamp(32px, 4vw, 64px); }
+  .credit-col { border-bottom: 1px solid var(--gold); }
+  .credit-col > :last-child, .credit-col > .credit-keep:last-child .credit { border-bottom: 0; }
+  .credit-keep h3 { font-size: 1.6rem; padding: 32px 0 10px; border-bottom: 1px solid var(--gold); }
+  .credit-col > .credit-keep:first-child h3 { padding-top: 0; }
+  /* MOCKUP D: one row per category, heading on the left, its credits in columns on the right */
+  .credit-groups { display: grid; border-bottom: 1px solid var(--gold); }
+  .credit-group { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); column-gap: clamp(32px, 4vw, 64px); padding: 28px 0; border-top: 1px solid var(--gold); }
+  .credit-group h3 { font-size: 1.6rem; }
+  .credit-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 3vw, 48px); align-content: start; }
+  .credit-list .credit:nth-last-child(-n+2):nth-child(odd), .credit-list .credit:last-child { border-bottom: 0; }
+  .credit { display: grid; grid-template-columns: 1fr auto; column-gap: 24px; padding: 11px 0; border-bottom: 1px solid var(--veil); }
+  .credit-title { font-style: italic; }
+  .credit-role { grid-column: 1; font-size: 0.92rem; color: var(--bronze); }
+  .credit-year { grid-column: 2; grid-row: 1; font-size: 0.9rem; opacity: .75; }
+
+  /* ---------- footer ---------- */
+  .footer { position: relative; overflow: hidden; background: var(--forest); color: var(--mist); }
+  .footer .flow { left: 0; width: 100%; }
+  /* default B: lines sweep down behind the text and fade as they reach it; backup A: a band above the text */
+  [data-fline="top"] .footer .flow { top: 0; height: clamp(50px, 8vw, 110px); opacity: .35; }
+  [data-fline="fade"] .footer .flow { top: 0; height: 300px; opacity: .4;
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, rgba(0,0,0,.22) 52%);
+            mask-image: linear-gradient(to bottom, #000 30%, rgba(0,0,0,.22) 52%); }
+  .footer a { color: var(--gold); }
+  .footer a:hover { color: var(--mist); }
+  .footer .section { padding-bottom: 48px; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; align-items: start; }
+  .footer h2 { color: var(--gold); margin-bottom: 24px; }
+  .footer h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--gold); }
+  .footer p { margin: 0; }
+  .footer ul { list-style: none; margin: 0; padding: 0; }
+  .footer li + li { margin-top: 6px; }
+  .footer .email { font-size: clamp(1.2rem, 2vw, 1.45rem); }
+  .footer .btn { margin-top: 28px; border-color: var(--gold); color: var(--gold); }
+  .footer .btn:hover { background: var(--gold); color: var(--forest); }
+  .colophon { grid-column: 1 / -1; margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(201,168,104,.35); font-size: 0.85rem; opacity: .75; }
+
+  /* ---------- phones & tablets ---------- */
+  @media (max-width: 860px) {
+    .nav { justify-content: center; padding-top: 20px; }
+    .hero { align-items: end; min-height: 100svh; }
+    .hero-img {
+      width: 100%; height: 82%;
+      object-position: 50% 20%;
+      -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+              mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    }
+    .hero-copy { margin: 0; padding: 0 var(--gutter) clamp(64px, 16vw, 110px); text-align: center; }
+    .hero-name { font-size: clamp(3.8rem, 18vw, 6.5rem); }
+    .hero-name span + span { padding-left: 0; }
+    .tagline { margin: 18px 0 0; }
+    .features { grid-template-columns: 1fr; gap: 14px; }
+    .feature { display: grid; grid-template-columns: 112px 1fr; gap: 18px; align-items: center; }
+    .feature img { aspect-ratio: 1; }
+    .feature h3 { margin-top: 0; font-size: 1.4rem; }
+    .reel-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-template-areas: "head" "video" "tabs"; }
+    .reel .sec-head { text-align: center; }
+    .reel .swash { margin-left: auto; }
+    .reel-picker { margin-top: 24px; }
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .credit-group { grid-template-columns: 1fr; row-gap: 12px; }
+    .footer .section { grid-template-columns: 1fr; gap: 36px; }
+    .colophon { margin-top: 8px; }
+  }
+  @media (max-width: 380px) { .nav { gap: 14px; } .nav a { font-size: 0.88rem; } }
+
+  /* ---------- MOCKUP ONLY: options panel (delete when a version is chosen) ---------- */
+  .mock { position: fixed; left: 16px; bottom: 16px; z-index: 50; background: #fff; color: #222; font: 13px/1.4 system-ui, sans-serif; padding: 12px 14px; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.25); display: grid; gap: 6px; }
+  .mock strong { font-size: 12px; }
+  .mock label { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+  .mock select, .mock button { font: inherit; }
+  .mock[hidden] { display: none; }
+  .mock-toggle { position: fixed; left: 16px; bottom: 16px; z-index: 49; font: 12px system-ui, sans-serif; padding: 6px 10px; border-radius: 8px; border: 0; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.25); cursor: pointer; }
+</style>
+<!-- Options panel shows only with ?options in the URL; demo visitors see the approved defaults. -->
+<script>if (!/[?&]options\b/.test(location.search)) document.documentElement.classList.add('no-mock');</script>
+<style>.no-mock .mock, .no-mock .mock-toggle { display: none !important; }</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="flow" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M-20 220 C 240 110, 430 300, 720 180 S 1200 50, 1460 140" vector-effect="non-scaling-stroke"/>
+      <path d="M-20 250 C 260 150, 450 320, 745 210 S 1220 90, 1460 170" vector-effect="non-scaling-stroke"/>
+      <path d="M-20 282 C 280 195, 470 330, 770 242 S 1240 135, 1460 202" vector-effect="non-scaling-stroke"/>
+    </g>
+  </symbol>
+  <symbol id="swash" viewBox="0 0 120 16">
+    <path d="M2 8 C 22 0, 38 16, 60 8 S 98 0, 118 8" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  </symbol>
+</svg>
+
+<nav class="nav" aria-label="Sections">
+  <a href="#work">Work</a>
+  <a href="#reel">Reel</a>
+  <a href="#photos">Photos</a>
+  <a href="#credits">Credits</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<header class="hero">
+  <img class="hero-img" src="assets/photos/harrison-keen-1.jpg" alt="Headshot of Harrison Keen" width="900" height="1125" fetchpriority="high">
+  <div class="hero-copy">
+    <h1 class="hero-name"><span>Harrison</span><span>Keen</span></h1>
+    <p class="tagline">Represented by Agency Name</p>
+  </div>
+  <svg class="hero-edge" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path class="fill" d="M0 70 C 300 20, 620 100, 960 55 S 1340 30, 1440 45 V100 H0 Z"/>
+    <path class="line" d="M0 70 C 300 20, 620 100, 960 55 S 1340 30, 1440 45"/>
+  </svg>
+</header>
+
+<main>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <svg class="flow" aria-hidden="true"><use href="#flow"/></svg>
+    <div class="sec-head">
+      <h2 id="work-title">Featured work</h2>
+      <svg class="swash" aria-hidden="true"><use href="#swash"/></svg>
+    </div>
+    <div class="features">
+      <article class="feature">
+        <img src="assets/photos/img_1820.jpg" alt="Still from Algorithm" loading="lazy" width="900" height="605">
+        <div>
+          <h3>Algorithm</h3>
+          <p>Danny Streeter</p>
+          <p class="kind">Feature film, 2026</p>
+        </div>
+      </article>
+      <article class="feature">
+        <img src="assets/photos/wormhole.jpg" alt="Still from Super Godfather 2" loading="lazy" width="900" height="506">
+        <div>
+          <h3>Super Godfather 2</h3>
+          <p>Felix Thorne</p>
+          <p class="kind">Vertical drama, 2026</p>
+        </div>
+      </article>
+      <article class="feature">
+        <img src="assets/photos/img_2006.jpg" alt="Still from Sons of Sun" loading="lazy" width="900" height="600">
+        <div>
+          <h3>Sons of Sun</h3>
+          <p>Elvis, Cash, Perkins &amp; Lewis</p>
+          <p class="kind">Theatre, 2024–25</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="reel" id="reel" aria-labelledby="reel-title">
+    <svg class="flow" aria-hidden="true"><use href="#flow"/></svg>
+    <div class="section reel-grid">
+      <div class="sec-head">
+        <h2 id="reel-title">Reel</h2>
+        <svg class="swash" aria-hidden="true"><use href="#swash"/></svg>
+      </div>
+      <div class="reel-video">
+        <video id="player" playsinline preload="none"
+               poster="assets/photos/showreel-poster.jpg"
+               src="assets/video/Showreel_HarrisonKeen.mp4"></video>
+        <button class="reel-start" type="button" aria-label="Play video"><span><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="currentColor"/></svg></span></button>
+      </div>
+      <div class="reel-picker">
+        <p class="pick-label" id="pick-label">Choose a video</p>
+        <div class="reel-tabs" role="tablist" aria-labelledby="pick-label">
+          <button role="tab" aria-selected="true"
+                  data-src="assets/video/Showreel_HarrisonKeen.mp4"
+                  data-poster="assets/photos/showreel-poster.jpg"><span class="pick-icon" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M0 0 L10 6 L0 12 Z" fill="currentColor"/></svg></span><span class="pick-text"><span class="pick-title">Showreel</span><small>Selected scenes</small></span><em class="now"><span class="b-now">Now playing</span><span class="b-sel">Selected</span></em></button>
+          <button role="tab" aria-selected="false"
+                  data-src="assets/video/villain-clips.mp4"
+                  data-poster="assets/video/villain-clips.jpg"><span class="pick-icon" aria-hidden="true"><svg viewBox="0 0 10 12"><path d="M0 0 L10 6 L0 12 Z" fill="currentColor"/></svg></span><span class="pick-text"><span class="pick-title">Villain scenes</span><small>Darker roles</small></span><em class="now"><span class="b-now">Now playing</span><span class="b-sel">Selected</span></em></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="photos" aria-labelledby="photos-title">
+    <div class="sec-head">
+      <h2 id="photos-title">Photos</h2>
+      <svg class="swash" aria-hidden="true"><use href="#swash"/></svg>
+    </div>
+    <div class="gallery">
+      <button><img src="assets/photos/hero-harrison-keen-5.jpg" alt="Smiling headshot on green" loading="lazy" width="720" height="900"></button>
+      <button><img src="assets/photos/hero-harrison-keen-2.jpg" alt="Headshot in a grey suit and tie" loading="lazy" width="720" height="900"></button>
+      <button><img src="assets/photos/harrison-457.jpg" alt="Laughing headshot on red" loading="lazy" width="900" height="1125"></button>
+      <button><img src="assets/photos/mrc8528.jpg" alt="Black and white portrait, hands clasped" loading="lazy" width="900" height="1371"></button>
+      <button><img src="assets/photos/harrison-keen-3.jpg" alt="Headshot in a brown leather jacket" loading="lazy" width="900" height="1125"></button>
+      <button><img src="assets/photos/img_1941.jpg" alt="Film still in a dim bar" loading="lazy" width="900" height="1350"></button>
+      <button><img src="assets/photos/harrison-keen-4.jpg" alt="Moody headshot in a black jacket" loading="lazy" width="900" height="1125"></button>
+      <button><img src="assets/photos/dsc08433.jpg" alt="Stage still, an intimate scene" loading="lazy" width="900" height="1350"></button>
+      <button><img src="assets/photos/img_1949.jpg" alt="Black and white still in an open-collared suit" loading="lazy" width="900" height="1350"></button>
+      <button><img src="assets/photos/scaleddown.jpg" alt="Period costume still with flat cap and braces" loading="lazy" width="900" height="1382"></button>
+      <button><img src="assets/photos/dsc07561.jpg" alt="Stage still in a gold shirt" loading="lazy" width="900" height="1350"></button>
+      <button><img src="assets/photos/img_1783_cropped.jpg" alt="Film still in an orange prison jumpsuit" loading="lazy" width="900" height="1351"></button>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg class="flow"><use href="#flow"/></svg></div>
+
+  <section class="section" id="credits" aria-labelledby="credits-title">
+    <div class="sec-head">
+      <h2 id="credits-title">Credits</h2>
+      <svg class="swash" aria-hidden="true"><use href="#swash"/></svg>
+    </div>
+    <div class="credits">
+      <div class="credit-keep"><h3>Feature film</h3><div class="credit"><span class="credit-title">Algorithm</span><span class="credit-role">Danny Streeter</span><span class="credit-year">2026</span></div></div>
+      <div class="credit-keep"><h3>Vertical drama</h3><div class="credit"><span class="credit-title">Super Godfather 2</span><span class="credit-role">Felix Thorne</span><span class="credit-year">2026</span></div></div>
+      <div class="credit"><span class="credit-title">Black Ties and White Lies</span><span class="credit-role">Brandon Harrington</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">The Duel</span><span class="credit-role">Harrison</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Superstar</span><span class="credit-role">Aaron Myers</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Reborn at 18: The Great Grandma Takes Charge</span><span class="credit-role">Ryan Ashford</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Take Back My Billionaire Stolen By Bestie</span><span class="credit-role">Jack</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Poolwatch</span><span class="credit-role">Anthony's Man-Crush</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">The Summer I Turned Bad</span><span class="credit-role">Dale</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">Runaway Prince's Secret Vacation</span><span class="credit-role">Benji</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">Heiress Returns Boss's Defense and Love</span><span class="credit-role">Daniel Roth</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">Flash Marriage to My Billionaire Hobo Hubby</span><span class="credit-role">Mike</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">Reborn to Find I Am the Mogul's Lost Love</span><span class="credit-role">Jimmy Dupont</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">The Mafia's Unwanted Blind Savior</span><span class="credit-role">Zed</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">The Heiress Blacklisted Her Husband</span><span class="credit-role">Thomas Wilson</span><span class="credit-year">2024</span></div>
+      <div class="credit"><span class="credit-title">Daddy's Best Friend Made Me His Billion Dollar Wife</span><span class="credit-role">Michael Lambert</span><span class="credit-year">2024</span></div>
+      <div class="credit"><span class="credit-title">Contract Marriage Before Election</span><span class="credit-role">Elliot Hill</span><span class="credit-year">2024</span></div>
+      <div class="credit-keep"><h3>Short film</h3><div class="credit"><span class="credit-title">Viveza Criolla</span><span class="credit-role">George</span><span class="credit-year">2026</span></div></div>
+      <div class="credit"><span class="credit-title">Sambar Pot Pie</span><span class="credit-role">David</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Off Book</span><span class="credit-role">Derek Hughes</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">The Girl Who Drew Stars</span><span class="credit-role">Lead</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Standing 8</span><span class="credit-role">Caleb</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Red Eye</span><span class="credit-role">Andres</span><span class="credit-year">2026</span></div>
+      <div class="credit"><span class="credit-title">Happy Hour</span><span class="credit-role">The Robber</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">The One Left Behind</span><span class="credit-role">Charlie</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">The Return</span><span class="credit-role">Edward</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">Rush Helm</span><span class="credit-role">Ross / Narrator</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">The Bystander Effect</span><span class="credit-role">Clyde</span><span class="credit-year">2023</span></div>
+      <div class="credit"><span class="credit-title">The Barber</span><span class="credit-role">Employee (Monster)</span><span class="credit-year">2023</span></div>
+      <div class="credit-keep"><h3>Web series</h3><div class="credit"><span class="credit-title">Chai Tea</span><span class="credit-role">Blake Owens</span><span class="credit-year">2026</span></div></div>
+      <div class="credit-keep"><h3>Voice</h3><div class="credit"><span class="credit-title">Stranger Cases</span><span class="credit-role">Agent Ethan Hayes</span><span class="credit-year">2025&ndash;26</span></div></div>
+      <div class="credit"><span class="credit-title">Welcome to Fosters (Neon Inkwell Collection)</span><span class="credit-role">Mark</span><span class="credit-year">2024</span></div>
+      <div class="credit-keep"><h3>Commercial</h3><div class="credit"><span class="credit-title">SERVD Cards Social Media Campaign</span><span class="credit-role">Boyfriend</span><span class="credit-year">2025</span></div></div>
+      <div class="credit"><span class="credit-title">Esky Promotion</span><span class="credit-role">Male Character</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">WD-40 No Vac Promotion</span><span class="credit-role">Male Character</span><span class="credit-year">2025</span></div>
+      <div class="credit"><span class="credit-title">eBay &times; TikTok &lsquo;Seen It All&rsquo; Campaign</span><span class="credit-role">Charlie</span><span class="credit-year">2024</span></div>
+      <div class="credit"><span class="credit-title">Finder &lsquo;Uhhh-Huh!&rsquo; Sea Urchin Ad</span><span class="credit-role">Jacob</span><span class="credit-year">2024</span></div>
+      <div class="credit"><span class="credit-title">Cochlear Odyssey</span><span class="credit-role">Graduating Grandson</span><span class="credit-year">2024</span></div>
+      <div class="credit-keep"><h3>Music video</h3><div class="credit"><span class="credit-title">Rolling Home</span><span class="credit-role">Lead</span><span class="credit-year">2026</span></div></div>
+      <div class="credit-keep"><h3>Theatre</h3><div class="credit"><span class="credit-title">Sons of Sun</span><span class="credit-role">Elvis Presley, Johnny Cash, Carl Perkins &amp; Jerry Lee Lewis</span><span class="credit-year">2024&ndash;25</span></div></div>
+      <div class="credit"><span class="credit-title">Mystery of the Blue Bloodhound</span><span class="credit-role">Mark Barrens</span><span class="credit-year">2023</span></div>
+      <div class="credit"><span class="credit-title">Murder by Invitation</span><span class="credit-role">Mr Dawes</span><span class="credit-year">2023</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <svg class="flow" aria-hidden="true"><use href="#flow"/></svg>
+  <div class="section">
+    <div>
+      <h2>Casting &amp; bookings</h2>
+      <p><a class="email" href="mailto:keen_ha@outlook.com">keen_ha@outlook.com</a></p>
+      <a class="btn" href="assets/HarrisonKeen_ActingCV.pdf" download>Download CV</a>
+    </div>
+    <div>
+      <h3>Representation</h3>
+      <!-- Replace with the client's agent, or remove this column. -->
+      <p>Agency Name<br><a href="mailto:agent@example.com">agent@example.com</a></p>
+    </div>
+    <div>
+      <h3>Profiles</h3>
+      <ul>
+        <li><a href="https://www.imdb.com/name/nm15486957/" rel="noopener">IMDb</a></li>
+        <li><a href="https://www.instagram.com/harrison.keen/" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+    <p class="colophon">© 2026 Harrison Keen</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" aria-label="Photo viewer">
+  <img alt="">
+  <button class="lightbox-step prev" aria-label="Previous photo">‹</button>
+  <button class="lightbox-step next" aria-label="Next photo">›</button>
+  <button class="lightbox-close" aria-label="Close">×</button>
+</dialog>
+
+<!-- MOCKUP ONLY: options panel -->
+<button class="mock-toggle" hidden>Options</button>
+<aside class="mock" aria-label="Mockup options">
+  <strong>Mockup options</strong>
+  <label>Name font <select data-opt="name">
+    <option value="a">A: Pinyon</option>
+    <option value="e">E: Parisienne</option>
+    <option value="g">G: Imperial Script</option>
+  </select></label>
+  <label>Credits <select data-opt="credits">
+    <option value="a">A: default</option>
+    <option value="b">B: categories top (backup)</option>
+    <option value="d">D: row per category (backup)</option>
+  </select></label>
+  <label>Footer lines <select data-opt="fline">
+    <option value="fade">B: behind, fading (default)</option>
+    <option value="top">A: band above (backup)</option>
+  </select></label>
+  <label>Under name <select data-opt="tag">
+    <option value="none">Nothing</option>
+    <option value="rep">Agency line (backup)</option>
+  </select></label>
+  <button type="button" class="mock-hide" style="justify-self:end">Hide</button>
+</aside>
+
+<script>
+  // Reel: switch between the two videos
+  const player = document.getElementById('player');
+  const reel = document.getElementById('reel');
+  const tabs = document.querySelectorAll('.reel-tabs button');
+  // browser controls only appear once a video has started, so the first view is just the poster
+  const start = () => { reel.classList.add('played'); player.controls = true; player.play().catch(() => {}); };
+  reel.querySelector('.reel-start').addEventListener('click', start);
+  player.addEventListener('playing', () => reel.classList.add('playing'));
+  ['pause', 'ended', 'emptied'].forEach(e => player.addEventListener(e, () => reel.classList.remove('playing')));
+  // scrolling the video out of view pauses it, which puts the badge back to "Selected"
+  new IntersectionObserver(([e]) => { if (!e.isIntersecting && !player.paused) player.pause(); }).observe(player);
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    if (tab.getAttribute('aria-selected') === 'true') return start();
+    tabs.forEach(t => t.setAttribute('aria-selected', t === tab));
+    player.pause();
+    player.poster = tab.dataset.poster;
+    player.src = tab.dataset.src;
+    start();
+  }));
+
+  // Gallery lightbox
+  const shots = [...document.querySelectorAll('.gallery img')];
+  const box = document.querySelector('.lightbox');
+  const big = box.querySelector('img');
+  let at = 0;
+  const show = i => { at = (i + shots.length) % shots.length; big.src = shots[at].src; big.alt = shots[at].alt; };
+  shots.forEach((img, i) => img.parentElement.addEventListener('click', () => { show(i); box.showModal(); }));
+  box.querySelector('.prev').addEventListener('click', () => show(at - 1));
+  box.querySelector('.next').addEventListener('click', () => show(at + 1));
+  box.querySelector('.lightbox-close').addEventListener('click', () => box.close());
+  box.addEventListener('click', e => { if (e.target === box) box.close(); });
+  box.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') show(at - 1);
+    if (e.key === 'ArrowRight') show(at + 1);
+  });
+
+  // Credits: split into columns of near-equal height so every column ends on the same line.
+  // data-credits picks how columns may break (a: anywhere, cheaply between categories;
+  // b: only between categories) or d: one row per category. A is the default; B and D are backups.
+  const credits = document.querySelector('.credits');
+  const groups = [];
+  [...credits.children].forEach(row => {
+    if (row.classList.contains('credit-keep')) groups.push({ title: row.querySelector('h3').textContent, items: [] });
+    groups.at(-1).items.push(row.classList.contains('credit') ? row : row.querySelector('.credit'));
+  });
+  const el = (tag, className, ...kids) => { const e = document.createElement(tag); e.className = className; e.append(...kids); return e; };
+  function layoutCredits() {
+    const mode = document.documentElement.dataset.credits || 'a';
+    const n = innerWidth > 1100 ? 3 : innerWidth > 860 ? 2 : 1;
+    if (mode === 'd') {
+      credits.style.setProperty('--cols', 1);
+      credits.replaceChildren(el('div', 'credit-groups', ...groups.map(g =>
+        el('div', 'credit-group', el('h3', '', g.title), el('div', 'credit-list', ...g.items)))));
+      credits.querySelectorAll('.credit-list').forEach(l => l.style.gridTemplateColumns = n === 1 ? '1fr' : '');
+      return;
+    }
+    const rows = groups.flatMap(g => [el('div', 'credit-keep', el('h3', '', g.title), g.items[0]), ...g.items.slice(1)]);
+    credits.style.setProperty('--cols', n);
+    const cols = Array.from({ length: n }, () => el('div', 'credit-col'));
+    cols[0].append(...rows);
+    credits.replaceChildren(...cols);
+    if (n === 1) return;
+    const h = rows.map(r => r.offsetHeight);
+    const sum = (a, b) => h.slice(a, b).reduce((x, y) => x + y, 0);
+    const keep = i => rows[i].classList.contains('credit-keep');
+    const penalty = i => keep(i) ? 0 : mode === 'b' ? Infinity : 40;
+    let best = null;
+    const cuts = n === 2 ? rows.map((_, i) => [i]).slice(1) :
+      rows.flatMap((_, i) => rows.map((_, j) => [i, j])).filter(([i, j]) => i > 0 && j > i);
+    for (const c of cuts) {
+      const edges = [0, ...c, rows.length];
+      const tallest = Math.max(...edges.slice(1).map((e, k) => sum(edges[k], e)));
+      const score = tallest + c.reduce((t, i) => t + penalty(i), 0);
+      if (!best || score < best.score) best = { score, c };
+    }
+    const edges = [0, ...best.c, rows.length];
+    cols.forEach((col, k) => col.replaceChildren(...rows.slice(edges[k], edges[k + 1])));
+  }
+  layoutCredits();
+  let lastCols;
+  addEventListener('resize', () => {
+    const n = innerWidth > 1100 ? 3 : innerWidth > 860 ? 2 : 1;
+    if (n !== lastCols) { lastCols = n; layoutCredits(); }
+  });
+  document.fonts.ready.then(layoutCredits);
+
+  // MOCKUP ONLY: options panel
+  const root = document.documentElement, mock = document.querySelector('.mock'), toggle = document.querySelector('.mock-toggle');
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem('elegant-opts-v7')) || {}; } catch (e) {}
+  document.querySelectorAll('.mock select').forEach(sel => {
+    if (saved[sel.dataset.opt]) { sel.value = saved[sel.dataset.opt]; root.dataset[sel.dataset.opt] = sel.value; }
+    sel.addEventListener('change', () => {
+      root.dataset[sel.dataset.opt] = sel.value;
+      document.fonts.ready.then(layoutCredits);
+      saved[sel.dataset.opt] = sel.value;
+      try { localStorage.setItem('elegant-opts-v7', JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+  document.querySelector('.mock-hide').addEventListener('click', () => { mock.hidden = true; toggle.hidden = false; });
+  toggle.addEventListener('click', () => { mock.hidden = false; toggle.hidden = true; });
+</script>
+</body>
+</html>
